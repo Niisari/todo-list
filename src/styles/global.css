@@ -53,3 +53,29 @@ h6 {
 p {
     font-family: "Inter", sans-serif;
 }
+
+.sidebar__top {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem;
+    background-color: var(--Sidebar-Cards);
+
+    .sidebar__logo--wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+
+        .logo__title {
+            font-size: 1.5rem;
+            color: var(--Text);
+        }
+    }
+
+    .sidebar__settings {
+
+    }
+}
