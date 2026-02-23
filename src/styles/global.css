@@ -105,6 +105,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
     }
 
     .add__todo--btn,
@@ -115,13 +116,44 @@ body {
     .all__btn {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
+        width: 100%;
         padding: 0.5rem;
         gap: 0.5rem;
         color: var(--Text);
     }
+
+    .add__todo--btn:hover,
+    .inbox__btn:hover,
+    .today__btn:hover,
+    .tomorrow__btn:hover,
+    .week__btn:hover,
+    .all__btn:hover {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    }
+
+    .add__todo--btn:active,
+    .inbox__btn:active,
+    .today__btn:active,
+    .tomorrow__btn:active,
+    .week__btn:active,
+    .all__btn:active {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    }
+
+    .add__todo--btn:focus,
+    .inbox__btn:focus,
+    .today__btn:focus,
+    .tomorrow__btn:focus,
+    .week__btn:focus,
+    .all__btn:focus {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    } 
 }
 
 .projects {
