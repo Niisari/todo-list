@@ -88,16 +88,14 @@ body {
 
 .sidebar__tasks {
 
-    .sidebar__tasks--wrapper {
+    .add__todo--btn,
+    .inbox__btn {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
 
-        .add__todo--btn {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: center;
-
-            gap: 0.5rem;
-            color: var(--Text);
-        }
+        gap: 0.5rem;
+        color: var(--Text);
     }
 }
