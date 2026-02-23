@@ -50,8 +50,12 @@ h6 {
     font-family: "Montserrat", sans-serif;
 }
 
-p {
+body {
     font-family: "Inter", sans-serif;
+}
+
+.todo__sidebar--wrapper {
+    background-color: var(--Sidebar-Cards);
 }
 
 .sidebar__top {
@@ -61,7 +65,6 @@ p {
     align-items: center;
 
     padding: 1rem;
-    background-color: var(--Sidebar-Cards);
 
     .sidebar__logo--wrapper {
         display: flex;
@@ -80,5 +83,20 @@ p {
     .sidebar__settings {
         display: flex;
         gap: 0.5rem;
+    }
+}
+
+.sidebar__tasks {
+
+    .sidebar__tasks--wrapper {
+
+        .add__todo--btn {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            
+            color: var(--Text);
+        }
     }
 }
