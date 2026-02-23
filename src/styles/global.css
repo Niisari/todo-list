@@ -89,7 +89,11 @@ body {
 .sidebar__tasks {
 
     .add__todo--btn,
-    .inbox__btn {
+    .inbox__btn,
+    .today__btn,
+    .tomorrow__btn,
+    .week__btn,
+    .all__btn {
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
