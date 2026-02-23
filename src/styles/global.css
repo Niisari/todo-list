@@ -60,6 +60,7 @@ body {
 .todo__sidebar--wrapper {
     background-color: var(--Sidebar-Cards);
 
+    position: relative;
     min-height: 100svh;
     padding: 1rem;
 }
@@ -169,8 +170,9 @@ body {
 
 .finished__todos {
     position: fixed;
+    left: 1rem;
     bottom: 1rem;
-    width: 100%;
+    width: 98%;
 
     display: flex;
     align-items: center;
@@ -182,7 +184,23 @@ body {
 
         gap: 0.5rem;
         padding: 0.5rem;
+        width: 100%;
 
         color: var(--Text);
+    }
+
+    .finished__todos--btn:hover {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    }
+
+    .finished__todos--btn:active {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    }
+
+    .finished__todos--btn:focus {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
     }
 }
