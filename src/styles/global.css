@@ -11,7 +11,7 @@
 /*   -----Light Theme-----  */
      /* Primary Colors */    
 }
-
+/* Fonts */
 @font-face {
     font-family: "Inter";
     font-weight: 400;
@@ -43,7 +43,7 @@
     font-display: swap;
     src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
 }
-
+/* General Typography */
 h1,
 h2,
 h3,
@@ -56,7 +56,7 @@ h6 {
 body {
     font-family: "Inter", sans-serif;
 }
-
+/* Siderbar */
 .todo__sidebar--wrapper {
     background-color: var(--Sidebar-Cards);
 
