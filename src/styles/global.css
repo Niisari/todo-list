@@ -1,4 +1,5 @@
 :root {
+/*   -----Dark Theme-----  */
     /* Primary Colors */
     --background: hsl(0, 0%, 0%);
     --Sidebar-Cards: hsl(0, 0%, 11%);
@@ -7,6 +8,8 @@
     --Buttons-Icons: hsl(43, 74%, 49%);
     --Hover-States: hsla(43, 74%, 49%, 0.15);
     --Borders-Dividers: hsla(0, 0%, 100%, 0.10);
+/*   -----Light Theme-----  */
+     /* Primary Colors */    
 }
 
 @font-face {
