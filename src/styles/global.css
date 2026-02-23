@@ -7,6 +7,7 @@
     /* Secondary Colors */
     --Buttons-Icons: hsl(43, 74%, 49%);
     --Hover-States: hsla(43, 74%, 49%, 0.15);
+    --Svg-Hover: hsl(43, 60%, 57%);
     --Borders-Dividers: hsla(0, 0%, 100%, 0.10);
 /*   -----Light Theme-----  */
      /* Primary Colors */    
@@ -86,11 +87,20 @@ body {
             font-size: 1.5rem;
             color: var(--Text);
         }
+
+        .svg__logo:hover path {
+            stroke: var(--Svg-Hover);
+        }
     }
 
     .sidebar__settings {
         display: flex;
         gap: 0.5rem;
+
+        .settings__cog--svg:hover path,
+        .settings__cog--svg:hover circle {
+            stroke: var(--Svg-Hover);
+        }
     }
 }
 
@@ -170,9 +180,9 @@ body {
 
 .finished__todos {
     position: fixed;
+    right: 1rem;
     left: 1rem;
-    bottom: 1rem;
-    width: 98%;
+    bottom: 0;
 
     display: flex;
     align-items: center;
