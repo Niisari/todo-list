@@ -69,6 +69,8 @@ p {
         justify-content: center;
         align-items: center;
 
+        gap: 0.5rem;
+
         .logo__title {
             font-size: 1.5rem;
             color: var(--Text);
@@ -76,6 +78,7 @@ p {
     }
 
     .sidebar__settings {
-
+        display: flex;
+        gap: 0.5rem;
     }
 }
