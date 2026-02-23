@@ -40,3 +40,16 @@
     font-display: swap;
     src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
+p {
+    font-family: "Inter", sans-serif;
+}
