@@ -90,6 +90,17 @@ body {
 
 .sidebar__tasks {
 
+    .sidebar__tasks--wrapper,
+    .inbox,
+    .today,
+    .tomorrow,
+    .week,
+    .all {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     .add__todo--btn,
     .inbox__btn,
     .today__btn,
@@ -101,6 +112,7 @@ body {
         justify-content: center;
         align-items: center;
 
+        padding: 0.5rem;
         gap: 0.5rem;
         color: var(--Text);
     }
