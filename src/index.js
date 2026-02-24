@@ -1,4 +1,3 @@
-// index.js
 import "./styles/reset.css";
 import "./styles/global.css";
 
@@ -82,7 +81,7 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
     const id = itemElement.dataset.id;
     const todoIndex = allTodos.findIndex(t => t.id === id);
 
-    // Toggle Complete (checkbox class from your render.js)
+    // Toggle Complete
     if (e.target.classList.contains('todo__item--checkbox')) {
         allTodos[todoIndex].toggleComplete();
         
@@ -90,7 +89,7 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
         renderTodoList(currentViewTitle, currentViewFilter());
     }
 
-    // Delete (delete button class from your render.js)
+    // Delete Todo
     if (e.target.classList.contains('todo__item--delete-btn')) {
         allTodos.splice(todoIndex, 1);
         renderTodoList(currentViewTitle, currentViewFilter());
