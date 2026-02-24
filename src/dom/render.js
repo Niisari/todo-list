@@ -28,7 +28,7 @@ const createTodoElement = (todo) => {
 
         <div class="todo__item--right">
             <button class="todo__item--delete-btn">
-                Delete
+                🗑️
             </button>
         </div>
     `;
