@@ -6,7 +6,7 @@ export const AddTodo = (callback) => {
     const modal = document.createElement("dialog");
     modal.className = "todo__modal";
     modal.innerHTML = `
-        <form id="todo-form" method="dialog">
+        <form id="todo-form" method="dialog" class="modal__form">
             <h3>Add New Task</h3>
             <input type="text" id="todo-title" placeholder="What needs to be done?" required>
             <input type="date" id="todo-date" required>
@@ -16,8 +16,8 @@ export const AddTodo = (callback) => {
                 <option value="High">High</option>
             </select>
             <div class="modal__actions">
-                <button type="button" id="modal-cancel">Cancel</button>
-                <button type="submit">Add Task</button>
+                <button type="button" id="modal-cancel" class="modal__cancel">Cancel</button>
+                <button type="submit" id="modal-add" class="modal__add">Add Task</button>
             </div>
         </form>
     `;
