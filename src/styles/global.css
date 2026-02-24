@@ -241,6 +241,7 @@ body {
 }
 
 .todo__list--wrapper {
+    width: 90%;
     color: var(--Text);
 
     .todo__item {
@@ -253,6 +254,7 @@ body {
         .todo__item--left {
             display: flex;
             flex-direction: column;
+            gap: 0.5rem;
 
             .todo__item--priority {
                 display: flex;
