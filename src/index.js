@@ -1,4 +1,4 @@
-// src/index.js
+// index.js
 import "./styles/reset.css";
 import "./styles/global.css";
 
@@ -12,46 +12,60 @@ import {
 } from "./modules/dateLogic.js";
 
 /* -----------------------------------------------------------
-   1. App State & Initial Setup
+   1. App State
 ----------------------------------------------------------- */
 const allTodos = [];
 
-// Initialize the sidebar functionality ONCE
+let currentViewTitle = "All Tasks";
+let currentViewFilter = () => allTodos;
+
 sidebarToggle();
 
 // Dummy data for testing
-allTodos.push(new Todo("Complete Odin Project", "Finish the logic", "2026-02-24T14:00", "High", "Inbox"));
-allTodos.push(new Todo("Gym Session", "Leg day", "2026-02-25T10:00", "Medium", "Inbox"));
+allTodos.push(new Todo("Complete Odin Project", "Logic", "2026-02-24T14:00", "High", "Inbox"));
+allTodos.push(new Todo("Gym Session", "Legs", "2026-02-25T10:00", "Medium", "Inbox"));
 
 // Initial Render
-renderTodoList("All Tasks", allTodos);
+renderTodoList(currentViewTitle, currentViewFilter());
 
 /* -----------------------------------------------------------
    2. Sidebar Navigation Listeners
 ----------------------------------------------------------- */
 
 document.getElementById('inbox__btn').addEventListener('click', () => {
-    const inboxTasks = allTodos.filter(t => t.project === 'Inbox');
-    renderTodoList("Inbox", inboxTasks);
+    currentViewTitle = "Inbox";
+    currentViewFilter = () => allTodos.filter(t => t.project === 'Inbox');
+    renderTodoList(currentViewTitle, currentViewFilter());
 });
 
 document.getElementById('today__btn').addEventListener('click', () => {
-    const todayTasks = getTodayTasks(allTodos);
-    renderTodoList("Today", todayTasks);
+    currentViewTitle = "Today";
+    currentViewFilter = () => getTodayTasks(allTodos);
+    renderTodoList(currentViewTitle, currentViewFilter());
 });
 
 document.getElementById('tomorrow__btn').addEventListener('click', () => {
-    const tomorrowTasks = getTomorrowTasks(allTodos);
-    renderTodoList("Tomorrow", tomorrowTasks);
+    currentViewTitle = "Tomorrow";
+    currentViewFilter = () => getTomorrowTasks(allTodos);
+    renderTodoList(currentViewTitle, currentViewFilter());
 });
 
 document.getElementById('week__btn').addEventListener('click', () => {
-    const weekTasks = getWeekTasks(allTodos);
-    renderTodoList("This Week", weekTasks);
+    currentViewTitle = "This Week";
+    currentViewFilter = () => getWeekTasks(allTodos);
+    renderTodoList(currentViewTitle, currentViewFilter());
 });
 
 document.getElementById('all__btn').addEventListener('click', () => {
-    renderTodoList("All Tasks", allTodos);
+    currentViewTitle = "All Tasks";
+    currentViewFilter = () => allTodos;
+    renderTodoList(currentViewTitle, currentViewFilter());
+});
+
+document.getElementById('finished__btn').addEventListener('click', () => {
+    currentViewTitle = "Finished Todos";
+    currentViewFilter = () => allTodos.filter(t => t.completed === true);
+    renderTodoList(currentViewTitle, currentViewFilter());
 });
 
 /* -----------------------------------------------------------
@@ -65,23 +79,24 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
     const id = itemElement.dataset.id;
     const todoIndex = allTodos.findIndex(t => t.id === id);
 
-    // Toggle Complete
+    // Toggle Complete (checkbox class from your render.js)
     if (e.target.classList.contains('todo__item--checkbox')) {
         allTodos[todoIndex].toggleComplete();
-        const titleSpan = itemElement.querySelector('.todo__item--title');
-        titleSpan.classList.toggle('todo__item--completed');
+        
+        // Re-render the current view so items move in/out of "Finished" correctly
+        renderTodoList(currentViewTitle, currentViewFilter());
     }
 
-    // Delete
+    // Delete (delete button class from your render.js)
     if (e.target.classList.contains('todo__item--delete-btn')) {
         allTodos.splice(todoIndex, 1);
-        renderTodoList("Current Tasks", allTodos);
+        renderTodoList(currentViewTitle, currentViewFilter());
     }
 });
 
 /* -----------------------------------------------------------
-   4. Modal / Creation Listeners
+   4. Modal Listeners
 ----------------------------------------------------------- */
 document.getElementById('add-todo--btn').addEventListener('click', () => {
-    console.log("Opening Add Todo Modal...");
+    console.log("Modal opening...");
 });
