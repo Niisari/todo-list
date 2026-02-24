@@ -264,12 +264,17 @@ body {
         .todo__item--left {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
 
             .todo__item--priority {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+
+                margin: 0 0 0.5rem;
+            }
+
+            .todo__item--description  {
+                margin: 0 0 0.5rem;
             }
         }
     }
