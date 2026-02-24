@@ -1,18 +1,27 @@
 export const sidebarToggle = () => {
     const sidebar = document.getElementById('todo-sidebar');
-    const toggleBtns = document.querySelectorAll('.logo__btn, .hide__wheel');
     
-    // toggle logic for the menu buttons
-    toggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            sidebar.classList.toggle('active'); 
-        });
-    });
+    // 1. Select the toggle wheels (one in sidebar, one in content area)
+    const toggleWheels = document.querySelectorAll('.hide__wheel');
 
-    // Select all your main navigation buttons
-    sidebar.addEventListener('click', (e) => {
-        if (e.target.closest('button')) {
-            sidebar.classList.remove('active');
+    // 2. Select all navigation task buttons + finished button
+    const navButtons = [
+        document.getElementById('inbox__btn'),
+        document.getElementById('today__btn'),
+        document.getElementById('tomorrow__btn'),
+        document.getElementById('week__btn'),
+        document.getElementById('all__btn'),
+        document.getElementById('finished__btn')
+    ];
+
+    // Combine them into one list of "Allowed Triggers"
+    const allowedTriggers = [...toggleWheels, ...navButtons];
+
+    allowedTriggers.forEach(trigger => {
+        if (trigger) {
+            trigger.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
         }
     });
 };
