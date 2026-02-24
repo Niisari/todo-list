@@ -216,7 +216,7 @@ body {
         border-radius: 0.5rem;
     }
 }
-
+/* Transition to show sidebar */
 .active {
     transform: translateX(0);
 }
