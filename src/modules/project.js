@@ -20,7 +20,7 @@ export const initProjects = () => {
     // 2. Add Project via Form
     addProjectBtn.addEventListener('click', () => {
         // If form already exists, don't create another
-        if (document.getElementById('project-form')) return;
+        if (document.getElementById('project__form')) return;
         
         showProjectForm(projectList);
     });
@@ -33,8 +33,8 @@ const showProjectForm = (container) => {
     form.innerHTML = `
         <input type="text" id="project-input" placeholder="Project Name..." required autocomplete="off">
         <div class="project__form--btns">
-            <button type="submit" class="proj-add">Add</button>
-            <button type="button" class="proj-cancel">Cancel</button>
+            <button type="submit" class="proj__add">Add</button>
+            <button type="button" class="proj__cancel">Cancel</button>
         </div>
     `;
 
@@ -50,7 +50,7 @@ const showProjectForm = (container) => {
     });
 
     // Handle Cancel
-    form.querySelector('.proj-cancel').addEventListener('click', () => {
+    form.querySelector('.proj__cancel').addEventListener('click', () => {
         form.remove();
     });
 };
