@@ -2,7 +2,7 @@ export const sidebarToggle = () => {
     const sidebar = document.getElementById('todo-sidebar');
     
     // 1. Select the toggle wheels (one in sidebar, one in content area)
-    const toggleWheels = document.querySelectorAll('.hide__wheel');
+    const toggleWheels = document.querySelectorAll('.hide__wheel, .hide__wheel--content');
 
     // 2. Select all navigation task buttons + finished button
     const navButtons = [
