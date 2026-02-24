@@ -30,3 +30,46 @@ const createTodoElement = (todo) => {
 
     return todoItem;
 };
+
+export const renderTodoList = (title, todoArray) => {
+    const renderArea = document.getElementById("todo-render-area");
+    if (!renderArea) return;
+
+    renderArea.innerHTML = ""; // Now only clears the list, not your button
+
+    const heading = document.createElement("h2");
+    heading.className = "content__title";
+    heading.textContent = title;
+    renderArea.appendChild(heading);
+
+    const listWrapper = document.createElement("div");
+    listWrapper.className = "todo__list--wrapper";
+
+    todoArray.forEach(todo => {
+        const item = document.createElement("div");
+        item.className = `todo__item todo__item--${todo.priority.toLowerCase()}`;
+        item.dataset.id = todo.id;
+
+        const dateDisplay = todo.dueDate 
+            ? format(parseISO(todo.dueDate), "MMM do") 
+            : "No date";
+
+        item.innerHTML = `
+            <div class="todo__item--left">
+                <input type="checkbox" class="todo__item--checkbox" ${todo.completed ? "checked" : ""}>
+                <div class="todo__item--text">
+                    <span class="todo__item--title ${todo.completed ? "todo__item--completed" : ""}">${todo.title}</span>
+                </div>
+            </div>
+            <div class="todo__item--right">
+                <span class="todo__item--date">${dateDisplay}</span>
+                <button class="todo__item--delete-btn">
+                    Delete
+                </button>
+            </div>
+        `;
+        listWrapper.appendChild(item);
+    });
+
+    renderArea.appendChild(listWrapper);
+};
