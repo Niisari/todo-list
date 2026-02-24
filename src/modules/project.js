@@ -1,5 +1,3 @@
-// modules/project.js
-
 export const initProjects = () => {
     const sidebarProjects = document.getElementById('sidebar-projects');
     const addProjectBtn = document.getElementById('add-project-btn');

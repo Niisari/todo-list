@@ -1,16 +1,11 @@
 import { isToday, isTomorrow, isThisWeek, parseISO, compareAsc, startOfToday } from "date-fns";
 
-/**
- * FILTERING LOGIC
- */
-
 export const getTodayTasks = (todos) => {
     return todos.filter(todo => {
         if (!todo.dueDate) return false;
         return isToday(parseISO(todo.dueDate));
     });
 };
-
 export const getTomorrowTasks = (todos) => {
     return todos.filter(todo => {
         if (!todo.dueDate) return false;
@@ -26,10 +21,6 @@ export const getWeekTasks = (todos) => {
     });
 };
 
-/**
- * SORTING LOGIC
- * Tasks in chronological order (soonest first)
- */
 export const sortByDate = (todos) => {
     return [...todos].sort((a, b) => {
         // Handle tasks without dates by pushing them to the bottom
@@ -40,10 +31,6 @@ export const sortByDate = (todos) => {
     });
 };
 
-/**
- * UTILITY
- * Check if a task is overdue
- */
 export const isOverdue = (todo) => {
     if (!todo.dueDate || todo.completed) return false;
     return parseISO(todo.dueDate) < startOfToday();
