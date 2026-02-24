@@ -61,9 +61,12 @@ body {
 .todo__sidebar--wrapper {
     background-color: var(--Sidebar-Cards);
 
-    position: relative;
+    position: fixed;
     min-height: 100svh;
     padding: 1rem;
+
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), visibility 0.5s; 
 }
 
 .sidebar__top {
@@ -80,7 +83,6 @@ body {
         flex-wrap: nowrap;
         justify-content: center;
         align-items: center;
-
         gap: 0.5rem;
 
         .logo__title {
@@ -213,4 +215,8 @@ body {
         background-color: var(--Hover-States);
         border-radius: 0.5rem;
     }
+}
+
+.active {
+    transform: translateX(0);
 }
