@@ -65,6 +65,7 @@ body {
     min-height: 100svh;
     width: 100%;
     padding: 1rem;
+    z-index: 2;
 
     transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), visibility 0.5s; 
@@ -227,12 +228,21 @@ body {
     background-color: var(--background);
 }
 
+.hide__wheel--content {
+    position: fixed;
+    top: 1.2rem; 
+    left: 1rem;
+
+    z-index: 1;
+}
+
 .todo__render--area {
     display: flex;
     flex-direction: column;
     align-items: center;
 
     position: relative;
+    padding: 1rem;
     gap: 1rem;
 
     .content__title {
@@ -241,7 +251,7 @@ body {
 }
 
 .todo__list--wrapper {
-    width: 90%;
+    width: 100%;
     color: var(--Text);
 
     .todo__item {
