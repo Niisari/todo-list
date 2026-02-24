@@ -63,6 +63,7 @@ body {
 
     position: fixed;
     min-height: 100svh;
+    width: 100%;
     padding: 1rem;
 
     transform: translateX(-100%);
