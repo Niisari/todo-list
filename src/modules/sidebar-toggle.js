@@ -10,12 +10,9 @@ export const sidebarToggle = () => {
     });
 
     // Select all your main navigation buttons
-    const navButtons = document.querySelectorAll('.inbox__btn, .today__btn, .tomorrow__btn, .week__btn, .all__btn');
-
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove the active class to slide the sidebar away
-            sidebar.classList.remove('active'); 
-        });
+    sidebar.addEventListener('click', (e) => {
+        if (e.target.closest('button')) {
+            sidebar.classList.remove('active');
+        }
     });
 };
