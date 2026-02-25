@@ -17,7 +17,6 @@ import { saveToLocalStorage, loadFromLocalStorage } from './modules/storage.js';
 /* -----------------------------------------------------------
    1. App State
 ----------------------------------------------------------- */
-let allTodos = loadFromLocalStorage();
 
 let currentViewTitle = "All Tasks";
 let currentViewFilter = () => allTodos;
@@ -25,9 +24,17 @@ let currentViewFilter = () => allTodos;
 initProjects();
 sidebarToggle();
 
-// Dummy data for testing
-allTodos.push(new Todo("Complete Odin Project", "Logic", "2026-02-24T14:00", "High", "Inbox"));
-allTodos.push(new Todo("Gym Session", "Legs", "2026-02-25T10:00", "Medium", "Inbox"));
+// Load from storage or start with an empty array
+let allTodos = loadFromLocalStorage() || [];
+
+// Check if it's the first time running (array is empty)
+if (allTodos.length === 0) {
+    allTodos.push(new Todo("Complete Odin Project", "Logic", "2026-02-24T14:00", "High", "Inbox"));
+    allTodos.push(new Todo("Gym Session", "Legs", "2026-02-25T10:00", "Medium", "Inbox"));
+    
+    // Save these defaults immediately so they aren't added again next refresh
+    saveToLocalStorage(allTodos);
+}
 
 // Initial Render
 renderTodoList(currentViewTitle, currentViewFilter());
