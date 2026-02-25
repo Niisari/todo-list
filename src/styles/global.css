@@ -470,12 +470,12 @@ body {
     }
 
     .todo__render--area {
-        width: 45vw;
+        width: 40vw;
         margin: 0 auto;
     }
 
     .hide__wheel--content {
-        left: 27.5rem;
+        left: 32vw;
     }
 
     .todo__modal {
