@@ -11,6 +11,7 @@ import {
     getWeekTasks 
 } from "./modules/dateLogic.js";
 import { initProjects } from "./modules/project.js";
+import { userProjects } from "./modules/project.js";
 
 /* -----------------------------------------------------------
    1. App State
@@ -113,8 +114,7 @@ document.getElementById('add-todo--btn').addEventListener('click', () => {
 });
 
 document.getElementById('add-todo--btn').addEventListener('click', () => {
-    // We pass a function to AddTodo that tells it what to do with the result
-    AddTodo((newTodo) => {
+    AddTodo(userProjects, (newTodo) => {
         allTodos.push(newTodo);
         renderTodoList(currentViewTitle, currentViewFilter());
     });
