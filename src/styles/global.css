@@ -58,6 +58,12 @@ h6 {
 body {
     font-family: "Inter", sans-serif;
 }
+
+.todo__content {
+    min-height: 100svh;
+    background-color: var(--background);
+}
+
 /* Siderbar */
 .todo__sidebar--wrapper {
     background-color: var(--Sidebar-Cards);
@@ -218,11 +224,6 @@ body {
 /* Transition to show sidebar */
 .active {
     transform: translateX(0);
-}
-
-.content {
-    min-height: 100svh;
-    background-color: var(--background);
 }
 
 .hide__wheel--content {
@@ -491,6 +492,17 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
+
+    .content__header {
+        display: flex;
+        align-items: flex-start;
+
+        width: 100%;
+
+        .content__title {
+            margin: 0 0 0 3rem;
+        }
+    }
 
     .todo__sidebar--wrapper {
         width: 18vw;
