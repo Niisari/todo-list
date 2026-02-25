@@ -272,14 +272,16 @@ body {
   height: 1.1rem;
   width: 1.1rem;
   background-color: transparent;
-  border: 2px solid #555;
+  border: 2px solid var(--Borders-Dividers);
   border-radius: 50%;
 }
 
-/* 3. Style the "Checked" state using the + selector */
 .checkbox__label input:checked + .checkbox__checkmark {
-  background-color: #7c3aed; /* Your purple color */
-  border-color: #7c3aed;
+  background-color: var(--background); 
+}
+
+.checkbox__checkmark:hover {
+    background-color: var(--background);
 }
 
 /* 4. Add the checkmark icon/dot inside (using ::after) */
