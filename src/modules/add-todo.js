@@ -37,6 +37,7 @@ export const AddTodo = (projectList, callback) => {
     const form = modal.querySelector("form");
 
     form.addEventListener("submit", (e) => {
+        e.preventDefault();
         // Use the modal reference to find inputs safely
         const title = modal.querySelector("#todo-title").value;
         const description = modal.querySelector("#todo-description").value;
