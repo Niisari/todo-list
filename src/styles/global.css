@@ -242,8 +242,10 @@ body {
     padding: 1rem;
     gap: 1rem;
 
-    .content__title {
+    .content__title  {
         color: var(--Text);
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
     } 
 }
 
@@ -320,8 +322,14 @@ body {
                 margin: 0 0 0.5rem;
             }
 
+            .todo__item--title {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 500;
+            }
+
             .todo__item--description  {
                 margin: 0 0 0.5rem;
+                font-weight: 400;
             }
         }
     }
@@ -514,6 +522,6 @@ body {
     }
 
     .todo__item--description  {
-        margin: 0 0 0.5rem;
+        margin: 0 1.5rem 0.5rem;
     }
 }
