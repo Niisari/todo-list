@@ -3,6 +3,7 @@
     /* Primary Colors */
     --background: hsl(0, 0%, 8%);
     --Sidebar-Cards: hsl(0, 0%, 11%);
+    --Sidebar-Cards-Hover: hsl(0, 0%, 16%);
     --Text: hsl(0, 0%, 96%);
     /* Secondary Colors */
     --Buttons-Icons: hsl(43, 74%, 49%);
@@ -323,6 +324,11 @@ body {
                 margin: 0 0 0.5rem;
             }
         }
+    }
+
+    .todo__item:hover {
+        background-color: var(--Sidebar-Cards-Hover);
+        cursor: pointer;
     }
 }
 
