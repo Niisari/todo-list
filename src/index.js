@@ -81,9 +81,6 @@ document.getElementById('finished__btn').addEventListener('click', () => {
     renderTodoList(currentViewTitle, currentViewFilter());
 });
 
-/* -----------------------------------------------------------
-   3. Content Interactions (Event Delegation)
------------------------------------------------------------ */
 
 document.getElementById('todo-content').addEventListener('click', (e) => {
     const itemElement = e.target.closest('.todo__item');
@@ -91,24 +88,37 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
 
     const id = itemElement.dataset.id;
     const todoIndex = allTodos.findIndex(t => t.id === id);
+    const selectedTodo = allTodos[todoIndex];
 
-    if (e.target.classList.contains('todo__item--checkbox')) {
-        const todoIndex = allTodos.findIndex(t => t.id === id); // Use ID as discussed
-        
-        allTodos[todoIndex].toggleCompleted();
-        
-        saveToLocalStorage(allTodos);
-        renderTodoList(currentViewTitle, currentViewFilter());
+    // 1. Delete Todo (Handles SVG)
+    if (e.target.closest('.todo__item--delete-btn')) {
+        if (confirm("Delete this task?")) {
+            allTodos.splice(todoIndex, 1);
+            saveAndRefresh();
+        }
+        return;
     }
 
-    // Delete Todo
-    if (e.target.classList.contains('todo__item--delete-btn')) {
-        allTodos.splice(todoIndex, 1);
+    // 2. Edit Todo (Handles SVG + calls Modal)
+    if (e.target.closest('.todo__item--edit-btn')) {
+        // We pass userProjects here so the modal dropdown has your projects
+        AddTodo(userProjects, () => {
+            saveAndRefresh();
+        }, selectedTodo);
+        return;
+    }
 
-        saveToLocalStorage(allTodos);
-        renderTodoList(currentViewTitle, currentViewFilter());
+    // 3. Checkbox Logic
+    if (e.target.closest('.todo__item--checkbox')) {
+        selectedTodo.toggleCompleted();
+        saveAndRefresh();
     }
 });
+
+function saveAndRefresh() {
+    saveToLocalStorage(allTodos);
+    renderTodoList(currentViewTitle, currentViewFilter());
+}
 
 /* -----------------------------------------------------------
    4. Modal Listeners
