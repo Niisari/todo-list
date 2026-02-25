@@ -1,3 +1,5 @@
+export const userProjects = [];
+
 export const initProjects = () => {
     const sidebarProjects = document.getElementById('sidebar-projects');
     const addProjectBtn = document.getElementById('add-project-btn');
@@ -56,6 +58,8 @@ const showProjectForm = (container) => {
 };
 
 const createProjectElement = (name, container) => {
+    userProjects.push(name);
+    
     const projectBtn = document.createElement('button');
     projectBtn.className = 'project__item--btn';
     projectBtn.innerHTML = `
