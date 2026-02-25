@@ -1,38 +1,100 @@
 import { saveProjectsToLocalStorage, loadProjectsFromLocalStorage } from './storage.js';
 
-// 1. Load the array from storage immediately
 export const userProjects = loadProjectsFromLocalStorage();
 
+/**
+ * RENDER PROJECT BUTTON
+ * Includes Edit and Delete actions
+ */
 const renderProjectButton = (name, container) => {
-    const projectBtn = document.createElement('button');
-    projectBtn.className = 'project__item--btn';
-    projectBtn.innerHTML = `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--Buttons-Icons)" stroke-width="2">
-            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-        </svg>
-        <span>${name}</span>
+    const projectItem = document.createElement('div');
+    projectItem.className = 'project__item';
+    
+    projectItem.innerHTML = `
+        <button class="project__item--btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+            </svg>
+            <span>${name}</span>
+        </button>
+        <div class="project__item--actions">
+            <button class="edit__proj--btn" title="Edit Name">✎</button>
+            <button class="delete__proj--btn" title="Delete Project">×</button>
+        </div>
     `;
- 
-    projectBtn.addEventListener('click', () => {
+
+    // Select Project
+    projectItem.querySelector('.project__item--btn').addEventListener('click', () => {
         document.dispatchEvent(new CustomEvent('filterProject', { detail: name }));
     });
 
-    container.appendChild(projectBtn);
+    // Delete Project
+    projectItem.querySelector('.delete__proj--btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (confirm(`Delete "${name}"?`)) {
+            const index = userProjects.indexOf(name);
+            if (index > -1) {
+                userProjects.splice(index, 1);
+                saveProjectsToLocalStorage(userProjects);
+                projectItem.remove();
+            }
+        }
+    });
+
+    // Edit Project
+    projectItem.querySelector('.edit__proj--btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleEditProject(name, projectItem, container);
+    });
+
+    container.appendChild(projectItem);
 };
 
-const createProjectElement = (name, container) => {
-    // Prevent duplicates
-    if (userProjects.includes(name)) return;
+/**
+ * HANDLE EDIT PROJECT
+ */
+const handleEditProject = (oldName, element, container) => {
+    const span = element.querySelector('span');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = oldName;
+    input.className = 'project__edit--input';
+    
+    span.replaceWith(input);
+    input.focus();
 
+    const saveEdit = () => {
+        const newName = input.value.trim();
+        if (newName && newName !== oldName && !userProjects.includes(newName)) {
+            const index = userProjects.indexOf(oldName);
+            userProjects[index] = newName;
+            saveProjectsToLocalStorage(userProjects);
+            
+            // Refresh the sidebar list
+            container.innerHTML = '';
+            userProjects.forEach(proj => renderProjectButton(proj, container));
+        } else {
+            input.replaceWith(span);
+        }
+    };
+
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveEdit(); });
+    input.addEventListener('blur', saveEdit);
+};
+
+/**
+ * CREATE PROJECT ELEMENT
+ */
+const createProjectElement = (name, container) => {
+    if (userProjects.includes(name)) return;
     userProjects.push(name);
-    
-    // Save the array to LocalStorage
     saveProjectsToLocalStorage(userProjects);
-    
-    // Use our "Stamp" to show it in the UI
     renderProjectButton(name, container);
 };
 
+/**
+ * SHOW PROJECT FORM
+ */
 const showProjectForm = (container) => {
     const form = document.createElement('form');
     form.id = 'project-form';
@@ -45,7 +107,7 @@ const showProjectForm = (container) => {
         </div>
     `;
 
-    container.prepend(form); 
+    container.prepend(form);
     const input = document.getElementById('project-input');
     input.focus();
 
@@ -58,11 +120,13 @@ const showProjectForm = (container) => {
         }
     });
 
-    form.querySelector('.proj__cancel').addEventListener('click', () => {
-        form.remove();
-    });
+    form.querySelector('.proj__cancel').addEventListener('click', () => form.remove());
 };
 
+/**
+ * INIT PROJECTS
+ * This is the main function called by index.js
+ */
 export const initProjects = () => {
     const sidebarProjects = document.getElementById('sidebar-projects');
     const addProjectBtn = document.getElementById('add-project-btn');
@@ -70,26 +134,22 @@ export const initProjects = () => {
 
     if (!sidebarProjects) return;
 
-    // Create the container for the list
     const projectListContainer = document.createElement('div');
     projectListContainer.id = 'project-list-container';
     projectListContainer.className = 'project__list--container';
     sidebarProjects.appendChild(projectListContainer);
 
-    // RE-HYDRATION: Build the UI for all saved projects
-    userProjects.forEach(name => {
-        renderProjectButton(name, projectListContainer);
-    });
+    // Load existing
+    userProjects.forEach(name => renderProjectButton(name, projectListContainer));
 
-    // Toggle Visibility
+    // Toggle logic
     hideProjectBtn.addEventListener('click', () => {
         projectListContainer.classList.toggle('hidden');
         hideProjectBtn.style.transform = projectListContainer.classList.contains('hidden') 
-            ? 'rotate(-90deg)' 
-            : 'rotate(0deg)';
+            ? 'rotate(-90deg)' : 'rotate(0deg)';
     });
 
-    // Add Project Click
+    // Add button logic
     addProjectBtn.addEventListener('click', () => {
         if (document.getElementById('project-form')) return;
         showProjectForm(projectListContainer);
