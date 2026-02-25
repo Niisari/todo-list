@@ -19,8 +19,11 @@ const createTodoElement = (todo) => {
             </div>
 
             <div class="todo__item--text">
+            <label class="checkbox__label">
                 <input type="checkbox" class="todo__item--checkbox" ${todo.completed ? "checked" : ""}>
+                <span class="checkbox__checkmark"></span>
                 <span class="todo__item--title ${todo.completed ? "todo__item--completed" : ""}">${todo.title}</span>
+            </label>
             </div>
 
         </div>
