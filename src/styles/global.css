@@ -325,12 +325,12 @@ body {
             .todo__item--title {
                font-family: 'Montserrat', sans-serif;
                font-weight: 500;
+               margin: 0 0 0.25rem;
             }
+        }
 
-            .todo__item--description  {
-                margin: 0 0 0.5rem;
-                font-weight: 400;
-            }
+        .todo__item--description {
+            margin: 0 1.5rem 1rem;
         }
     }
 
@@ -519,9 +519,5 @@ body {
             order: 1;
             gap: 0.5rem;
         }
-    }
-
-    .todo__item--description  {
-        margin: 0 1.5rem 1rem;
     }
 }
