@@ -451,16 +451,29 @@ body {
         align-items: center;
 
         width: 100%;
-        padding: 0.5rem;
         gap: 0.5rem;
 
         color: var(--Text);
     }
+}
 
-    .project__item--btn:hover {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
+.project__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    .project__item--actions {
+        display: flex;
+        gap: 0.5rem;
     }
+}
+
+.project__item:hover {
+    background-color: var(--Hover-States);
 }
 
 @media only screen and (min-width: 768px) {
