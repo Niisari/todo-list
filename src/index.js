@@ -12,11 +12,12 @@ import {
 } from "./modules/dateLogic.js";
 import { initProjects } from "./modules/project.js";
 import { userProjects } from "./modules/project.js";
+import { saveToLocalStorage, loadFromLocalStorage } from './modules/storage.js';
 
 /* -----------------------------------------------------------
    1. App State
 ----------------------------------------------------------- */
-const allTodos = [];
+let allTodos = loadFromLocalStorage();
 
 let currentViewTitle = "All Tasks";
 let currentViewFilter = () => allTodos;
@@ -91,15 +92,20 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
     const id = itemElement.dataset.id;
     const todoIndex = allTodos.findIndex(t => t.id === id);
 
-    // Toggle Complete
     if (e.target.classList.contains('todo__item--checkbox')) {
-        allTodos[todoIndex].completed = !allTodos[todoIndex].completed;
+        const todoIndex = allTodos.findIndex(t => t.id === id); // Use ID as discussed
+        
+        allTodos[todoIndex].toggleComplete();
+        
+        saveToLocalStorage(allTodos);
         renderTodoList(currentViewTitle, currentViewFilter());
     }
 
     // Delete Todo
     if (e.target.classList.contains('todo__item--delete-btn')) {
         allTodos.splice(todoIndex, 1);
+
+        saveToLocalStorage(allTodos);
         renderTodoList(currentViewTitle, currentViewFilter());
     }
 });
@@ -114,6 +120,8 @@ document.getElementById('add-todo--btn').addEventListener('click', () => {
 document.getElementById('add-todo--btn').addEventListener('click', () => {
     AddTodo(userProjects, (newTodo) => {
         allTodos.push(newTodo);
+
+        saveToLocalStorage(allTodos);
         renderTodoList(currentViewTitle, currentViewFilter());
     });
 });
