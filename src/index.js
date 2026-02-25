@@ -64,6 +64,15 @@ document.getElementById('all__btn').addEventListener('click', () => {
     renderTodoList(currentViewTitle, currentViewFilter());
 });
 
+document.addEventListener('filterProject', (e) => {
+    const projectName = e.detail; 
+    currentViewTitle = projectName;
+    currentViewFilter = () => allTodos.filter(t => t.project === projectName);
+    renderTodoList(currentViewTitle, currentViewFilter());
+
+    document.getElementById('todo-sidebar').classList.remove('active');
+});
+
 document.getElementById('finished__btn').addEventListener('click', () => {
     currentViewTitle = "Finished Todos";
     currentViewFilter = () => allTodos.filter(t => t.completed === true);
