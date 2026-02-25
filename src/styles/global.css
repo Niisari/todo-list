@@ -346,7 +346,7 @@ body {
         outline: none;
         resize: none;
 
-        background-color: var(--Sidebar-Cards);
+        background: none;
         color: var(--Text);
         height: 1.875rem;
     }
