@@ -383,3 +383,24 @@ body {
     }
 }
 
+.project__list--container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .project__item--btn {
+        display: flex;
+        align-items: center;
+
+        width: 100%;
+        padding: 0.5rem;
+        gap: 0.5rem;
+
+        color: var(--Text);
+    }
+
+    .project__item--btn:hover {
+        background-color: var(--Hover-States);
+        border-radius: 0.5rem;
+    }
+}
