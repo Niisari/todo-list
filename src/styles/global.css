@@ -226,7 +226,7 @@ body {
 }
 
 .hide__wheel--content {
-    position: fixed;
+    position: absolute;
     top: 1.2rem; 
     left: 1rem;
 
@@ -502,7 +502,7 @@ body {
     }
 
     .hide__wheel--content {
-        left: 32vw;
+        left: 31vw;
     }
 
     .todo__modal {
