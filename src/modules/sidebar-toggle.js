@@ -11,10 +11,10 @@ export const sidebarToggle = () => {
         document.getElementById('tomorrow__btn'),
         document.getElementById('week__btn'),
         document.getElementById('all__btn'),
-        document.getElementById('finished__btn')
+        document.getElementById('finished__btn'),
+        document.getElementById('project-btn'),
     ];
 
-    // Combine them into one list of "Allowed Triggers"
     const allowedTriggers = [...toggleWheels, ...navButtons];
 
     allowedTriggers.forEach(trigger => {
