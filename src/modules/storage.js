@@ -23,3 +23,12 @@ export const loadFromLocalStorage = () => {
         );
     });
 }
+
+export const saveProjectsToLocalStorage = (projects) => {
+    localStorage.setItem('projectList', JSON.stringify(projects));
+};
+
+export const loadProjectsFromLocalStorage = () => {
+    const data = localStorage.getItem('projectList');
+    return data ? JSON.parse(data) : ['Inbox']; // Safety: returns ['Inbox'] if empty
+};
