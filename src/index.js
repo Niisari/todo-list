@@ -93,9 +93,7 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
 
     // Toggle Complete
     if (e.target.classList.contains('todo__item--checkbox')) {
-        allTodos[todoIndex].toggleComplete();
-        
-        // Re-render the current view so items move in/out of "Finished" correctly
+        allTodos[todoIndex].completed = !allTodos[todoIndex].completed;
         renderTodoList(currentViewTitle, currentViewFilter());
     }
 
