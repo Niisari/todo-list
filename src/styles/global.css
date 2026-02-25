@@ -419,20 +419,32 @@ body {
         width: 18vw;
     }
 
-    .todo__list--wrapper {
-        padding: 2rem;
-    }
-
     .todo__render--area {
         width: 45vw;
         margin: 0 auto;
     }
 
     .hide__wheel--content {
-        left: 29.5rem;
+        left: 27.5rem;
     }
 
     .todo__modal {
         width: 15rem;
+    }
+
+    .todo__item--left.todo__item--left.todo__item--left {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .todo__item--priority {
+            order: 1;
+            gap: 0.5rem;
+        }
+    }
+
+    .todo__item--description  {
+        margin: 0 0 0.5rem;
     }
 }
