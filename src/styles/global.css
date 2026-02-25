@@ -246,6 +246,53 @@ body {
     } 
 }
 
+.checkbox__label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 0 0 1.5rem;
+}
+
+/* 1. Hide the actual checkbox completely */
+.checkbox__label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* 2. Create the custom circular box (the replacement) */
+.checkbox__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.1rem;
+  width: 1.1rem;
+  background-color: transparent;
+  border: 2px solid #555;
+  border-radius: 50%;
+}
+
+/* 3. Style the "Checked" state using the + selector */
+.checkbox__label input:checked + .checkbox__checkmark {
+  background-color: #7c3aed; /* Your purple color */
+  border-color: #7c3aed;
+}
+
+/* 4. Add the checkmark icon/dot inside (using ::after) */
+.checkbox__checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox__label input:checked + .checkbox__checkmark::after {
+  display: block;
+}
+
 .todo__list--wrapper {
     width: 100%;
     color: var(--Text);
@@ -256,6 +303,7 @@ body {
 
         padding: 1rem;
         margin: 0 0 1rem;
+        position: relative;
 
         .todo__item--left {
             display: flex;
