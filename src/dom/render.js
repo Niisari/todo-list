@@ -66,10 +66,14 @@ export const renderTodoList = (title, todoArray) => {
 
     renderArea.innerHTML = "";
 
+    const header = document.createElement("div")
+    header.className = "content__header";
+    renderArea.appendChild(header);
+
     const heading = document.createElement("h2");
     heading.className = "content__title";
     heading.textContent = title;
-    renderArea.appendChild(heading);
+    header.appendChild(heading);
 
     const listWrapper = document.createElement("div");
     listWrapper.className = "todo__list--wrapper";
