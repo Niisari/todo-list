@@ -1,31 +1,36 @@
-export const userProjects = [];
+import { saveProjectsToLocalStorage, loadProjectsFromLocalStorage } from './storage.js';
 
-export const initProjects = () => {
-    const sidebarProjects = document.getElementById('sidebar-projects');
-    const addProjectBtn = document.getElementById('add-project-btn');
-    const hideProjectBtn = document.getElementById('hide-project-btn');
+// 1. Load the array from storage immediately
+export const userProjects = loadProjectsFromLocalStorage();
 
-    // Create the project list container
-    const projectList = document.createElement('div');
-    projectList.id = 'project-list-container';
-    projectList.className = 'project__list--container';
-    sidebarProjects.appendChild(projectList);
-
-    // 1. Toggle Visibility Logic
-    hideProjectBtn.addEventListener('click', () => {
-        projectList.classList.toggle('hidden');
-        hideProjectBtn.style.transform = projectList.classList.contains('hidden') 
-            ? 'rotate(-90deg)' 
-            : 'rotate(0deg)';
+const renderProjectButton = (name, container) => {
+    const projectBtn = document.createElement('button');
+    projectBtn.className = 'project__item--btn';
+    projectBtn.innerHTML = `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--Buttons-Icons)" stroke-width="2">
+            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+        </svg>
+        <span>${name}</span>
+    `;
+ 
+    projectBtn.addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('filterProject', { detail: name }));
     });
 
-    // 2. Add Project via Form
-    addProjectBtn.addEventListener('click', () => {
-        // If form already exists, don't create another
-        if (document.getElementById('project__form')) return;
-        
-        showProjectForm(projectList);
-    });
+    container.appendChild(projectBtn);
+};
+
+const createProjectElement = (name, container) => {
+    // Prevent duplicates
+    if (userProjects.includes(name)) return;
+
+    userProjects.push(name);
+    
+    // Save the array to LocalStorage
+    saveProjectsToLocalStorage(userProjects);
+    
+    // Use our "Stamp" to show it in the UI
+    renderProjectButton(name, container);
 };
 
 const showProjectForm = (container) => {
@@ -40,38 +45,53 @@ const showProjectForm = (container) => {
         </div>
     `;
 
-    container.prepend(form); // Show form at the top of the list
-    document.getElementById('project-input').focus();
+    container.prepend(form); 
+    const input = document.getElementById('project-input');
+    input.focus();
 
-    // Handle Submit
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const name = document.getElementById('project-input').value;
-        createProjectElement(name, container);
-        form.remove();
+        const name = input.value.trim();
+        if (name) {
+            createProjectElement(name, container);
+            form.remove();
+        }
     });
 
-    // Handle Cancel
     form.querySelector('.proj__cancel').addEventListener('click', () => {
         form.remove();
     });
 };
 
-const createProjectElement = (name, container) => {
-    userProjects.push(name);
-    
-    const projectBtn = document.createElement('button');
-    projectBtn.className = 'project__item--btn';
-    projectBtn.innerHTML = `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--Buttons-Icons)" stroke-width="2">
-            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-        </svg>
-        <span>${name}</span>
-    `;
+export const initProjects = () => {
+    const sidebarProjects = document.getElementById('sidebar-projects');
+    const addProjectBtn = document.getElementById('add-project-btn');
+    const hideProjectBtn = document.getElementById('hide-project-btn');
 
-    projectBtn.addEventListener('click', () => {
-        document.dispatchEvent(new CustomEvent('filterProject', { detail: name }));
+    if (!sidebarProjects) return;
+
+    // Create the container for the list
+    const projectListContainer = document.createElement('div');
+    projectListContainer.id = 'project-list-container';
+    projectListContainer.className = 'project__list--container';
+    sidebarProjects.appendChild(projectListContainer);
+
+    // RE-HYDRATION: Build the UI for all saved projects
+    userProjects.forEach(name => {
+        renderProjectButton(name, projectListContainer);
     });
 
-    container.appendChild(projectBtn);
+    // Toggle Visibility
+    hideProjectBtn.addEventListener('click', () => {
+        projectListContainer.classList.toggle('hidden');
+        hideProjectBtn.style.transform = projectListContainer.classList.contains('hidden') 
+            ? 'rotate(-90deg)' 
+            : 'rotate(0deg)';
+    });
+
+    // Add Project Click
+    addProjectBtn.addEventListener('click', () => {
+        if (document.getElementById('project-form')) return;
+        showProjectForm(projectListContainer);
+    });
 };
