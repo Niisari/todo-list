@@ -48,4 +48,4 @@ This is a solution to the [Todo List on The Odin Project](https://www.theodinpro
 
 ## Acknowledgments
 
-I took inspiration from this project made by [@S-Y-A-N](https://github.com/S-Y-A-N/todo-list), go check it out (https://s-y-a-n.github.io/todo-list/)
+I took inspiration from this project made by [@S-Y-A-N](https://github.com/S-Y-A-N/todo-list), go check it out [Live Site](https://s-y-a-n.github.io/todo-list/)
