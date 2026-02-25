@@ -1,37 +1,53 @@
-import { isToday, isTomorrow, isThisWeek, parseISO, compareAsc, startOfToday } from "date-fns";
+import { parseISO, isToday, isTomorrow, isThisWeek, isAfter, startOfToday } from 'date-fns';
 
-export const getTodayTasks = (todos) => {
-    return todos.filter(todo => {
-        if (!todo.dueDate) return false;
-        return isToday(parseISO(todo.dueDate));
-    });
-};
-export const getTomorrowTasks = (todos) => {
-    return todos.filter(todo => {
-        if (!todo.dueDate) return false;
-        return isTomorrow(parseISO(todo.dueDate));
-    });
-};
-
-export const getWeekTasks = (todos) => {
-    return todos.filter(todo => {
-        if (!todo.dueDate) return false;
-        // isThisWeek checks if the date falls within the current calendar week
-        return isThisWeek(parseISO(todo.dueDate), { weekStartsOn: 1 }); // Starts on Monday
-    });
+// Function to safely parse a date string
+const safeParse = (dateString) => {
+    if (!dateString || typeof dateString !== 'string') {
+        return null;
+    }
+    try {
+        return parseISO(dateString);
+    } catch (e) {
+        return null;
+    }
 };
 
-export const sortByDate = (todos) => {
-    return [...todos].sort((a, b) => {
-        // Handle tasks without dates by pushing them to the bottom
-        if (!a.dueDate) return 1;
-        if (!b.dueDate) return -1;
-        
-        return compareAsc(parseISO(a.dueDate), parseISO(b.dueDate));
+export const getTodayTasks = (allTodos) => {
+    return allTodos.filter(todo => {
+        const date = safeParse(todo.dueDate);
+        return date ? isToday(date) : false;
     });
 };
 
-export const isOverdue = (todo) => {
-    if (!todo.dueDate || todo.completed) return false;
-    return parseISO(todo.dueDate) < startOfToday();
+export const getTomorrowTasks = (allTodos) => {
+    return allTodos.filter(todo => {
+        const date = safeParse(todo.dueDate);
+        return date ? isTomorrow(date) : false;
+    });
+};
+
+export const getWeekTasks = (allTodos) => {
+    return allTodos.filter(todo => {
+        const date = safeParse(todo.dueDate);
+        // isThisWeek checks if the date is within the current week
+        return date ? isThisWeek(date, { weekStartsOn: 1 }) : false;
+    });
+};
+
+export const getUpcomingTasks = (allTodos) => {
+    const today = startOfToday();
+    return allTodos.filter(todo => {
+        const date = safeParse(todo.dueDate);
+        return date ? isAfter(date, today) : false;
+    });
+};
+
+// Function to get tasks for a specific project
+export const getProjectTasks = (allTodos, projectName) => {
+    return allTodos.filter(todo => todo.project === projectName);
+};
+
+// Function to get finished tasks
+export const getFinishedTasks = (allTodos) => {
+    return allTodos.filter(todo => todo.completed === true);
 };
