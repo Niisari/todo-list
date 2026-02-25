@@ -336,9 +336,19 @@ body {
 
     input, select {
         padding: 0.25rem 0.5rem;
-        border-radius: 0.5rem;
         border: 1px solid var(--Borders-Dividers);
         background-color: var(--Sidebar-Cards);
+    }
+
+    textarea {
+        padding: 0.25rem;
+        border: none;
+        outline: none;
+        resize: none;
+
+        background-color: var(--Sidebar-Cards);
+        color: var(--Text);
+        height: 1.875rem;
     }
 
     input::placeholder,
