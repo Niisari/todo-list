@@ -95,7 +95,7 @@ document.getElementById('todo-content').addEventListener('click', (e) => {
     if (e.target.classList.contains('todo__item--checkbox')) {
         const todoIndex = allTodos.findIndex(t => t.id === id); // Use ID as discussed
         
-        allTodos[todoIndex].toggleComplete();
+        allTodos[todoIndex].toggleCompleted();
         
         saveToLocalStorage(allTodos);
         renderTodoList(currentViewTitle, currentViewFilter());
