@@ -23,9 +23,8 @@ const createTodoElement = (todo) => {
                 <span class="todo__item--title ${todo.completed ? "todo__item--completed" : ""}">${todo.title}</span>
             </div>
 
-            <div class="todo__item--description ${todo.completed ? "todo__item--completed" : ""}">${todo.description}</div>
         </div>
-
+            <div class="todo__item--description ${todo.completed ? "todo__item--completed" : ""}">${todo.description}</div>
         <div class="todo__item--right">
             <button class="todo__item--delete-btn">
                 🗑️
