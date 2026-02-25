@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+import { format, parseISO, isValid } from 'date-fns';
 
 const createTodoElement = (todo) => {
     const todoItem = document.createElement("div");
@@ -6,9 +6,20 @@ const createTodoElement = (todo) => {
     todoItem.className = `todo__item todo__item--${todo.priority.toLowerCase()}`;
     todoItem.dataset.id = todo.id; 
 
-    const dateDisplay = todo.dueDate 
-        ? format(parseISO(todo.dueDate), "MMM do") 
-        : "No date";
+        let dateDisplay = "No date";
+
+        if (todo.dueDate) {
+            // 1. If it's already a Date object, use it. 
+            // 2. If it's a string, parse it into a Date object.
+            const dateObj = todo.dueDate instanceof Date 
+                ? todo.dueDate 
+                : parseISO(todo.dueDate);
+
+            // 3. Only format if the date is valid to prevent further crashes
+            if (isValid(dateObj)) {
+                dateDisplay = format(dateObj, "MMM do");
+            }
+        }
 
     todoItem.innerHTML = `
         <div class="todo__item--left">
