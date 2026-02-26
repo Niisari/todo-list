@@ -1,27 +1,26 @@
-import { format, parseISO, isValid } from 'date-fns';
+import { format, parseISO, isValid } from "date-fns";
 
 const createTodoElement = (todo) => {
-    const todoItem = document.createElement("div");
-    // Applying BEM class and priority modifier
-    todoItem.className = `todo__item todo__item--${todo.priority.toLowerCase()}`;
-    todoItem.dataset.id = todo.id; 
+  const todoItem = document.createElement("div");
+  // Applying BEM class and priority modifier
+  todoItem.className = `todo__item todo__item--${todo.priority.toLowerCase()}`;
+  todoItem.dataset.id = todo.id;
 
-        let dateDisplay = "No date";
+  let dateDisplay = "No date";
 
-        if (todo.dueDate) {
-            // 1. If it's already a Date object, use it. 
-            // 2. If it's a string, parse it into a Date object.
-            const dateObj = todo.dueDate instanceof Date 
-                ? todo.dueDate 
-                : parseISO(todo.dueDate);
+  if (todo.dueDate) {
+    // 1. If it's already a Date object, use it.
+    // 2. If it's a string, parse it into a Date object.
+    const dateObj =
+      todo.dueDate instanceof Date ? todo.dueDate : parseISO(todo.dueDate);
 
-            // 3. Only format if the date is valid to prevent further crashes
-            if (isValid(dateObj)) {
-                dateDisplay = format(dateObj, "MMM do");
-            }
-        }
+    // 3. Only format if the date is valid to prevent further crashes
+    if (isValid(dateObj)) {
+      dateDisplay = format(dateObj, "MMM do");
+    }
+  }
 
-    todoItem.innerHTML = `
+  todoItem.innerHTML = `
         <div class="todo__item--left">
 
             <div class="todo__item--priority ${todo.completed ? "todo__item--completed" : ""}">
@@ -57,32 +56,32 @@ const createTodoElement = (todo) => {
         </div>
     `;
 
-    return todoItem;
+  return todoItem;
 };
 
 export const renderTodoList = (title, todoArray) => {
-    const renderArea = document.getElementById("todo-render-area");
-    if (!renderArea) return;
+  const renderArea = document.getElementById("todo-render-area");
+  if (!renderArea) return;
 
-    renderArea.innerHTML = "";
+  renderArea.innerHTML = "";
 
-    const header = document.createElement("div")
-    header.className = "content__header";
-    renderArea.appendChild(header);
+  const header = document.createElement("div");
+  header.className = "content__header";
+  renderArea.appendChild(header);
 
-    const heading = document.createElement("h2");
-    heading.className = "content__title";
-    heading.textContent = title;
-    header.appendChild(heading);
+  const heading = document.createElement("h2");
+  heading.className = "content__title";
+  heading.textContent = title;
+  header.appendChild(heading);
 
-    const listWrapper = document.createElement("div");
-    listWrapper.className = "todo__list--wrapper";
+  const listWrapper = document.createElement("div");
+  listWrapper.className = "todo__list--wrapper";
 
-    // Logic fix: Now correctly using the helper function
-    todoArray.forEach(todo => {
-        const item = createTodoElement(todo);
-        listWrapper.appendChild(item);
-    });
+  // Logic fix: Now correctly using the helper function
+  todoArray.forEach((todo) => {
+    const item = createTodoElement(todo);
+    listWrapper.appendChild(item);
+  });
 
-    renderArea.appendChild(listWrapper);
+  renderArea.appendChild(listWrapper);
 };
