@@ -1,49 +1,49 @@
 :root {
-/*   -----Dark Theme-----  */
-    /* Primary Colors */
-    --background: hsl(0, 0%, 8%);
-    --Sidebar-Cards: hsl(0, 0%, 11%);
-    --Sidebar-Cards-Hover: hsl(0, 0%, 16%);
-    --Text: hsl(0, 0%, 96%);
-    /* Secondary Colors */
-    --Buttons-Icons: hsl(43, 74%, 49%);
-    --Hover-States: hsla(43, 74%, 49%, 0.15);
-    --Svg-Hover: hsl(43, 60%, 57%);
-    --Borders-Dividers: hsla(0, 0%, 100%, 0.10);
-/*   -----Light Theme-----  */
-     /* Primary Colors */    
+  /*   -----Dark Theme-----  */
+  /* Primary Colors */
+  --background: hsl(0, 0%, 8%);
+  --Sidebar-Cards: hsl(0, 0%, 11%);
+  --Sidebar-Cards-Hover: hsl(0, 0%, 16%);
+  --Text: hsl(0, 0%, 96%);
+  /* Secondary Colors */
+  --Buttons-Icons: hsl(43, 74%, 49%);
+  --Hover-States: hsla(43, 74%, 49%, 0.15);
+  --Svg-Hover: hsl(43, 60%, 57%);
+  --Borders-Dividers: hsla(0, 0%, 100%, 0.1);
+  /*   -----Light Theme-----  */
+  /* Primary Colors */
 }
 /* Fonts */
 @font-face {
-    font-family: "Inter";
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url("../assets/fonts/inter-v20-latin-regular.woff2") format("woff2");
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/inter-v20-latin-regular.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: "Inter";
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    src: url("../assets/fonts/inter-v20-latin-500.woff2") format("woff2");
+  font-family: "Inter";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/inter-v20-latin-500.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: "Montserrat";
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    src: url("../assets/fonts/montserrat-v31-latin-500.woff2") format("woff2");
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/montserrat-v31-latin-500.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
 }
 /* General Typography */
 h1,
@@ -52,202 +52,204 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-    font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .todo__content {
-    min-height: 100svh;
-    background-color: var(--background);
+  min-height: 100svh;
+  background-color: var(--background);
 }
 
 /* Siderbar */
 .todo__sidebar--wrapper {
-    background-color: var(--Sidebar-Cards);
+  background-color: var(--Sidebar-Cards);
 
-    position: fixed;
-    min-height: 100svh;
-    width: 100%;
-    padding: 1rem;
-    z-index: 2;
+  position: fixed;
+  min-height: 100svh;
+  width: 100%;
+  padding: 1rem;
+  z-index: 2;
 
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), visibility 0.5s; 
+  transform: translateX(-100%);
+  transition:
+    transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    visibility 0.5s;
 }
 
 .sidebar__top {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem;
+  margin: 0 0 3rem;
+
+  .sidebar__logo--wrapper {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 0.5rem;
 
-    padding: 0.5rem;
-    margin: 0 0 3rem;
-
-    .sidebar__logo--wrapper {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-
-        .logo__title {
-            font-size: 1.5rem;
-            color: var(--Text);
-        }
+    .logo__title {
+      font-size: 1.5rem;
+      color: var(--Text);
     }
+  }
 
-    .sidebar__settings {
-        display: flex;
-        gap: 0.5rem;
+  .sidebar__settings {
+    display: flex;
+    gap: 0.5rem;
 
-        .settings__cog--svg:hover path,
-        .settings__cog--svg:hover circle {
-            stroke: var(--Svg-Hover);
-        }
+    .settings__cog--svg:hover path,
+    .settings__cog--svg:hover circle {
+      stroke: var(--Svg-Hover);
     }
+  }
 }
 
 .sidebar__tasks {
-    margin: 0 0 3rem;
+  margin: 0 0 3rem;
 
-    .sidebar__tasks--wrapper,
-    .inbox,
-    .today,
-    .tomorrow,
-    .week,
-    .all {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
+  .sidebar__tasks--wrapper,
+  .inbox,
+  .today,
+  .tomorrow,
+  .week,
+  .all {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 
-    .add__todo--btn,
-    .inbox__btn,
-    .today__btn,
-    .tomorrow__btn,
-    .week__btn,
-    .all__btn {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
+  .add__todo--btn,
+  .inbox__btn,
+  .today__btn,
+  .tomorrow__btn,
+  .week__btn,
+  .all__btn {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
 
-        width: 100%;
-        padding: 0.5rem;
-        gap: 0.5rem;
-        color: var(--Text);
-    }
+    width: 100%;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    color: var(--Text);
+  }
 
-    .add__todo--btn:hover,
-    .inbox__btn:hover,
-    .today__btn:hover,
-    .tomorrow__btn:hover,
-    .week__btn:hover,
-    .all__btn:hover {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    }
+  .add__todo--btn:hover,
+  .inbox__btn:hover,
+  .today__btn:hover,
+  .tomorrow__btn:hover,
+  .week__btn:hover,
+  .all__btn:hover {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 
-    .add__todo--btn:active,
-    .inbox__btn:active,
-    .today__btn:active,
-    .tomorrow__btn:active,
-    .week__btn:active,
-    .all__btn:active {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    }
+  .add__todo--btn:active,
+  .inbox__btn:active,
+  .today__btn:active,
+  .tomorrow__btn:active,
+  .week__btn:active,
+  .all__btn:active {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 
-    .add__todo--btn:focus,
-    .inbox__btn:focus,
-    .today__btn:focus,
-    .tomorrow__btn:focus,
-    .week__btn:focus,
-    .all__btn:focus {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    } 
+  .add__todo--btn:focus,
+  .inbox__btn:focus,
+  .today__btn:focus,
+  .tomorrow__btn:focus,
+  .week__btn:focus,
+  .all__btn:focus {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 }
 
 .projects {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 0.5rem;
-    .projects__title {
-        color: var(--Text);
-    }
+  padding: 0.5rem;
+  .projects__title {
+    color: var(--Text);
+  }
 }
 
 .finished__todos {
-    position: fixed;
-    right: 1rem;
-    left: 1rem;
-    bottom: 0.5rem;
+  position: fixed;
+  right: 1rem;
+  left: 1rem;
+  bottom: 0.5rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .finished__todos--btn {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
 
-    .finished__todos--btn {
-        display: flex;
-        align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
 
-        gap: 0.5rem;
-        padding: 0.5rem;
-        width: 100%;
+    color: var(--Text);
+  }
 
-        color: var(--Text);
-    }
+  .finished__todos--btn:hover {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 
-    .finished__todos--btn:hover {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    }
+  .finished__todos--btn:active {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 
-    .finished__todos--btn:active {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    }
-
-    .finished__todos--btn:focus {
-        background-color: var(--Hover-States);
-        border-radius: 0.5rem;
-    }
+  .finished__todos--btn:focus {
+    background-color: var(--Hover-States);
+    border-radius: 0.5rem;
+  }
 }
 /* Transition to show sidebar */
 .active {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 .hide__wheel--content {
-    position: absolute;
-    top: 1.2rem; 
-    left: 1rem;
+  position: absolute;
+  top: 1.2rem;
+  left: 1rem;
 
-    z-index: 1;
+  z-index: 1;
 }
 
 .todo__render--area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    position: relative;
-    padding: 1rem;
-    gap: 1rem;
+  position: relative;
+  padding: 1rem;
+  gap: 1rem;
 
-    .content__title  {
-        color: var(--Text);
-        font-weight: 700;
-        font-family: 'Montserrat', sans-serif;
-    } 
+  .content__title {
+    color: var(--Text);
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+  }
 }
 
 .checkbox__label {
@@ -281,11 +283,11 @@ body {
 }
 
 .checkbox__label input:checked + .checkbox__checkmark {
-  background-color: var(--background); 
+  background-color: var(--background);
 }
 
 .checkbox__checkmark:hover {
-    background-color: var(--background);
+  background-color: var(--background);
 }
 
 /* 4. Add the checkmark icon/dot inside (using ::after) */
@@ -300,236 +302,236 @@ body {
 }
 
 .todo__list--wrapper {
-    width: 100%;
-    color: var(--Text);
+  width: 100%;
+  color: var(--Text);
 
-    .todo__item {
-        border-radius: 1rem;
-        background-color: var(--Sidebar-Cards);
+  .todo__item {
+    border-radius: 1rem;
+    background-color: var(--Sidebar-Cards);
 
-        padding: 1rem;
-        margin: 0 0 1rem;
-        position: relative;
+    padding: 1rem;
+    margin: 0 0 1rem;
+    position: relative;
 
-        .todo__item--left {
-            display: flex;
-            flex-direction: column;
+    .todo__item--left {
+      display: flex;
+      flex-direction: column;
 
-            .todo__item--priority {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+      .todo__item--priority {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-                margin: 0 0 0.5rem;
-            }
+        margin: 0 0 0.5rem;
+      }
 
-            .todo__item--title {
-               font-family: 'Montserrat', sans-serif;
-               font-weight: 500;
-               margin: 0 0 0.25rem;
-            }
-        }
-
-        .todo__item--description {
-            margin: 0 1.5rem 1rem;
-        }
+      .todo__item--title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        margin: 0 0 0.25rem;
+      }
     }
 
-    .todo__item:hover {
-        background-color: var(--Sidebar-Cards-Hover);
-        cursor: pointer;
+    .todo__item--description {
+      margin: 0 1.5rem 1rem;
     }
+  }
+
+  .todo__item:hover {
+    background-color: var(--Sidebar-Cards-Hover);
+    cursor: pointer;
+  }
 }
 
 .priority__text.low {
-    background-color: hsl(140, 50%, 50%);
+  background-color: hsl(140, 50%, 50%);
 }
 
 .priority__text.medium {
-    background-color: hsl(35, 90%, 50%);
+  background-color: hsl(35, 90%, 50%);
 }
 
 .priority__text.high {
-    background-color: hsl(0, 85%, 60%);
+  background-color: hsl(0, 85%, 60%);
 }
 
 .priority__text.low,
 .priority__text.medium,
 .priority__text.high {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
 
-    font-weight: 500;
-    font-size: 0.75rem;
-    color: var(--Text);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--Text);
 }
 
 .todo__modal {
-    position: fixed;
-    top: 10rem;
-    left: 1rem;
+  position: fixed;
+  top: 10rem;
+  left: 1rem;
 
-    width: 100%;
+  width: 100%;
 
-    border: 1px solid var(--Borders-Dividers);
-    border-radius: 1rem;
-    background-color: var(--background);
+  border: 1px solid var(--Borders-Dividers);
+  border-radius: 1rem;
+  background-color: var(--background);
 }
 
 .modal__form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    gap: 0.5rem;
-    padding: 1rem;
+  gap: 0.5rem;
+  padding: 1rem;
 
+  color: var(--Text);
+
+  .modal__cancel,
+  .modal__add {
+    background-color: var(--Buttons-Icons);
     color: var(--Text);
 
-    .modal__cancel,
-    .modal__add {
-        background-color: var(--Buttons-Icons);
-        color: var(--Text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+  }
 
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.5rem;
-    }
+  input,
+  select {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--Borders-Dividers);
+    background-color: var(--Sidebar-Cards);
+  }
 
-    input, select {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid var(--Borders-Dividers);
-        background-color: var(--Sidebar-Cards);
-    }
+  textarea {
+    padding: 0.25rem;
+    border: none;
+    outline: none;
+    resize: none;
 
-    textarea {
-        padding: 0.25rem;
-        border: none;
-        outline: none;
-        resize: none;
+    background: none;
+    color: var(--Text);
+    height: 1.875rem;
+  }
 
-        background: none;
-        color: var(--Text);
-        height: 1.875rem;
-    }
-
-    input::placeholder,
-    input,
-    select {
-        color: var(--Text);
-    }
+  input::placeholder,
+  input,
+  select {
+    color: var(--Text);
+  }
 }
 
 .project__form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    position: fixed;
+  position: fixed;
 
-    gap: 0.5rem;
-    padding: 1rem;
+  gap: 0.5rem;
+  padding: 1rem;
 
-    background-color: var(--background);
+  background-color: var(--background);
+  border: 1px solid var(--Borders-Dividers);
+  border-radius: 1rem;
+
+  input {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+
     border: 1px solid var(--Borders-Dividers);
-    border-radius: 1rem;
+    background-color: var(--Sidebar-Cards);
+    color: var(--Text);
+  }
 
-    input {
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.5rem;
+  input::placeholder {
+    color: var(--Text);
+  }
 
-        border: 1px solid var(--Borders-Dividers);
-        background-color: var(--Sidebar-Cards);
-        color: var(--Text);
-    }
+  .proj__add,
+  .proj__cancel {
+    background-color: var(--Buttons-Icons);
+    color: var(--Text);
 
-    input::placeholder {
-        color: var(--Text);
-    }
-
-    .proj__add,
-    .proj__cancel {
-        background-color: var(--Buttons-Icons);
-        color: var(--Text);
-
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.5rem;
-    }
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+  }
 }
 
 .project__list--container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .project__item--btn {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .project__item--btn {
-        display: flex;
-        align-items: center;
-
-        width: 100%;
-        gap: 0.5rem;
-
-        color: var(--Text);
-    }
-}
-
-.project__item {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 
     width: 100%;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    gap: 0.5rem;
 
-    .project__item--actions {
-        display: flex;
-        gap: 0.5rem;
-    }
+    color: var(--Text);
+  }
+}
+
+.project__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  .project__item--actions {
+    display: flex;
+    gap: 0.5rem;
+  }
 }
 
 .project__item:hover {
-    background-color: var(--Hover-States);
+  background-color: var(--Hover-States);
 }
 
 @media only screen and (min-width: 768px) {
+  .content__header {
+    display: flex;
+    align-items: flex-start;
 
-    .content__header {
-        display: flex;
-        align-items: flex-start;
+    width: 100%;
 
-        width: 100%;
-
-        .content__title {
-            margin: 0 0 0 3rem;
-        }
+    .content__title {
+      margin: 0 0 0 3rem;
     }
+  }
 
-    .todo__sidebar--wrapper {
-        width: 18vw;
+  .todo__sidebar--wrapper {
+    width: 18vw;
+  }
+
+  .todo__render--area {
+    width: 40vw;
+    margin: 0 auto;
+  }
+
+  .hide__wheel--content {
+    left: 31vw;
+  }
+
+  .todo__modal {
+    width: 15rem;
+  }
+
+  .todo__item--left.todo__item--left.todo__item--left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .todo__item--priority {
+      order: 1;
+      gap: 0.5rem;
     }
-
-    .todo__render--area {
-        width: 40vw;
-        margin: 0 auto;
-    }
-
-    .hide__wheel--content {
-        left: 31vw;
-    }
-
-    .todo__modal {
-        width: 15rem;
-    }
-
-    .todo__item--left.todo__item--left.todo__item--left {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-
-        .todo__item--priority {
-            order: 1;
-            gap: 0.5rem;
-        }
-    }
+  }
 }
